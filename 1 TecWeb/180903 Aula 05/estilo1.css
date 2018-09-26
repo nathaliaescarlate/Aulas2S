@@ -1,0 +1,97 @@
+body{
+    font-family: 'Shadows Into Light', cursive;
+    background-image: url(https://cdn.hipercultura.com/imagens/os-misterios-da-constelacao-de-orion-og.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    letter-spacing: 0,5px;
+    line-height: 0,1px;
+    word-spacing: 10px;
+}
+
+.negrito{
+    font-weight: bold;
+}
+
+.italico{
+    font-style: italic;
+}
+
+.sublinhado{
+    text-decoration: underline;
+}
+
+.sobrescrito{
+    text-decoration: overline;
+    }
+#p3{
+      color: blue;
+      background-color: chartreuse;
+      text-align: center
+    }
+
+.tabela{
+    color: white;
+}
+
+table, th,td{
+    border: 3px solid gray;
+    border-collapse: collapse;
+}
+
+.bordas{
+    border-radius: 10px 0 10px 0;
+
+    border-top-width: 2px;
+    border-top-color: black;
+    border-top-style: dashed;
+    /*border-top-left-radius: 10px; */
+
+    border-right-width: 2px;
+    border-right-color: orange;
+    border-right-style: solid;
+
+    border-bottom-width: 2px;
+    border-bottom-color: red;
+    border-bottom-style: dotted;
+    /*border-bottom-right-radius: 10px;*/
+
+    border-left-width: 2px;
+    border-left-color:yellow;
+    border-left-style: double;  
+}
+/*seletor{
+    propriedade> valor;
+*/
+
+/*definir classe:
+    não pode ter espaço
+    nao pode começar com numero*/
+.teste{
+    background-color: royalblue
+    
+}
+
+p.teste{
+    background-color: red;
+    text-align: center;
+    text-align: justify;
+    text-align: right;
+    text-align: left;
+}
+
+a:hover{
+    background-color: yellow;
+}
+a:visited{
+    background-color: red;
+}
+a:focus{
+    background-color: green;
+}
+a:active{
+    background-color: blue;
+}
+
+
+
+

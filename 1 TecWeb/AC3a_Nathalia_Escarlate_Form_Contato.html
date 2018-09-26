@@ -1,0 +1,75 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Formulário de Contato</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="AC3 Nathalia.css" />
+
+</head>
+<body>
+
+    <h2> Formulário de Contato </h2>
+        <br>
+    <form action="" method="POST">
+
+        <!--   Nome completo (obrigatório, máximo 100 caracteres) -->
+        <label for="nome"> Nome Completo: </label>
+        <input type="text" id="nome" maxlength=100 required name="nome_completo_usuario">
+            <br>
+            <br>
+
+        <!--   E-mail do remetente (obrigatório, máximo 100 caracteres) -->
+        <label for="email"> E-mail: </label>
+        <input type="email" id="email" maxlength=100 required name="email_usuario">
+            <br>
+            <br>
+
+        <!--   Assunto da mensagem (Opções: Bug, Reclamações, Sugestões)(obrigatório) -->
+        <label for="assunto_mensagem"> Assunto: </label>
+        <select id="assunto_mensagem_usuario" required name="assunto_mensagem_usuario">
+            <option> Bug </option>
+            <option> Reclamações </option>
+            <option> Sugestões </option>
+        </select>
+            <br>
+            <br>
+        <!--  Texto da mensagem (obrigatório) -->
+        <label for="corpo_mensagem"> Mensagem: </label>
+        <input type="text" id="corpo_mensagem" required name="corpo_mensagem_usuario">
+            <br>
+            <br>
+        <!--   Palavras chave (Múltipla escolha, opções: problemas, tecnologia, impacta, email, seilá) -->
+        <label for="palavras_chave"> Palavras Chave: </label>
+        <br>
+        <br>  
+        <div>
+            <input type="checkbox" id="Boletos" name="boletos_usuario">
+            <label for"Boletos"> Boletos </label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="Faltas" name="faltas_usuario">
+            <label for"Faltas"> Faltas </label>
+        </div>
+
+        <div>
+                <input type="checkbox" id="Notas" name="notas_usuario">
+                <label for"Notas"> Notas </label>
+        </div>
+
+        <div>
+                <input type="checkbox" id="microsoft_imagine" name="microsoft_imagine_usuario">
+                <label for"microsoft_imagine"> Microsoft Imagine </label>
+        </div>
+
+        <div>
+                <input type="checkbox" id="smart_class" name="smart_class_usuario">
+                <label for"smart_class"> Smart Class </label>
+        </div>
+            <br>     
+        <button type="submit">Enviar dados</button>
+    </form>
+
+</body>
+</html>

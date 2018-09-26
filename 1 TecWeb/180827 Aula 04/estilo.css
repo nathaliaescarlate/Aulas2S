@@ -1,0 +1,33 @@
+table, td,th{
+    border: 2px solid gray;
+    border-collapse: collapse;
+
+    vertical-align: top;
+    text-align: center;
+}
+th{
+    background-color: tomato;
+}
+div{
+    background-color: yellow;
+}
+#div1{
+    background-color: darkblue;
+}
+
+#azul{
+    color: #4885ed;
+    font-family: 'Noto Sans', serif;
+}
+#vermelho{
+    color: #db3236;
+    font-family: 'Noto Sans', serif; 
+}
+#amarelo{
+    color: #f4c20d;
+    font-family: 'Noto Sans', serif;
+}
+#verde{
+    color: #3cba54;
+    font-family: 'Noto Sans', serif;
+}

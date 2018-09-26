@@ -1,0 +1,24 @@
+Folha de estilo externa
+    arquivo css separado
+Folha de estilo interna
+    <style>
+Folha de estilo em linha (inline)
+    <style="..."
+    
+
+
+line-height
+letter-spacing
+word-spacing
+
+font-family
+font-size
+font-weight
+font-style
+
+text-decoration
+text-transform
+text-align
+text-ident
+
+

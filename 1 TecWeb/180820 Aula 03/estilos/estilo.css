@@ -1,0 +1,12 @@
+body{
+    background-color: aqua;
+}
+    .Item1{ /*representa a classe*/
+        background-color: blueviolet;
+    }
+    .Item2{
+        background-color:chartreuse;
+    }
+    #Item3{
+        background-color: blue;
+    }

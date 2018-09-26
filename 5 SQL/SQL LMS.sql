@@ -1,0 +1,216 @@
+CREATE TABLE USUARIO
+	( 
+		ID INT IDENTITY NOT NULL,
+		Login VARCHAR(50) NOT NULL,
+		Senha INT NOT NULL UNIQUE,
+		DtExpiracao DATETIME DEFAULT '01/01/1900',
+		CONSTRAINT PK_ID_USUARIO PRIMARY KEY (ID)
+	 );
+
+CREATE TABLE COORDENADOR
+	(
+	ID INT IDENTITY NOT NULL,
+	Id_usuario INT NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+	Email VARCHAR(30) NOT NULL UNIQUE, 
+	Celular INT NOT NULL UNIQUE,
+	CONSTRAINT PK_ID_COORDENADOR PRIMARY KEY (ID),
+	CONSTRAINT FK_id_usuario_coordenador FOREIGN KEY (Id_usuario)
+	 REFERENCES USUARIO(ID),
+	);
+
+
+CREATE TABLE ALUNO
+	(
+	ID INT IDENTITY NOT NULL,
+	Id_usuario INT NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+	Email VARCHAR(30) NOT NULL UNIQUE, 
+	Celular INT NOT NULL UNIQUE,
+	RA INT NOT NULL,
+	Foto VARCHAR (30),
+
+	CONSTRAINT PK_ID_ALUNO PRIMARY KEY (ID),
+	CONSTRAINT FK_id_usuario_aluno FOREIGN KEY (Id_usuario)
+	 REFERENCES USUARIO(ID),
+	);
+
+CREATE TABLE PROFESSOR
+	(
+	ID INT IDENTITY NOT NULL,
+	Id_usuario INT NOT NULL,
+	Email VARCHAR(30) NOT NULL UNIQUE, 
+	Celular INT NOT NULL UNIQUE,
+	CONSTRAINT PK_ID_PROFESSOR PRIMARY KEY (ID),
+	CONSTRAINT FK_id_usuario_professor FOREIGN KEY (Id_usuario)
+	 REFERENCES USUARIO(ID),
+	);
+
+CREATE TABLE Disciplina
+(
+    ID INT IDENTITY not null, 
+    Nome varchar(150) UNIQUE not null,
+	IdCoordenador INT not null,
+    Data Date DEFAULT GETDATE() not null,
+    Status VARCHAR(7) not null DEFAULT ('Aberta'),
+    PlanoDeEnsino VARCHAR(500) not null,
+    CargaHoraria  TINYINT not null,
+    Competencias VARCHAR(500) not null,
+    Habilidades VARCHAR(500) not null,
+    Ementa VARCHAR(500) not null,
+    ConteudoProgramatico VARCHAR(500) not null,
+    BibliografiaBasica VARCHAR(500) not null,
+    BibliografiaComplementar VARCHAR(500) not null,
+    PercentualPratico TINYINT not null,  
+    PercentualTeorico TINYINT not null,
+        
+    CONSTRAINT PK_ID_Disciplina PRIMARY KEY (ID),
+    CONSTRAINT CK_Status check ([Status] = 'Aberta' OR [Status] = 'Fechada'),
+    CONSTRAINT CK_CargaHoraria CHECK ([CargaHoraria] = '40' OR [CargaHoraria] = '80'),
+    CONSTRAINT CK_PercentualPratico Check (PercentualPratico BETWEEN '00' AND '100'), 
+    CONSTRAINT CK_PercentualTeorico Check (PercentualTeorico BETWEEN '00' AND '100'),
+
+    CONSTRAINT FK_IdCoordenador_Disciplina FOREIGN KEY (IdCoordenador)
+    REFERENCES Coordenador (ID)
+);
+
+CREATE TABLE Curso
+(
+    ID INT IDENTITY not null,
+    Nome varchar(150) UNIQUE not null,
+
+    CONSTRAINT PK_ID_CURSO PRIMARY KEY (ID),
+);
+
+CREATE TABLE DisciplinaOfertada
+(
+    ID INT IDENTITY NOT NULL,
+	IdDisciplina INT NOT NULL,
+	IdCoordenador INT NOT NULL,
+	IdCurso INT NOT NULL,
+	IdProfessor INT NOT NULL,
+    DtInicioMatricula DATE NOT NULL,
+    DtFimMatricula DATE NOT NULL,
+    Ano DATE Not Null,
+    Semestre TINYINT NOT NULL,
+    Turma VARCHAR(1) NOT NULL,
+    Metodologia VARCHAR(500),
+    Recursos VARCHAR(500),
+    CriterioAvaliacao VARCHAR(500),
+    PlanosDeAulas VARCHAR(500),
+
+    CONSTRAINT PK_ID_DisciplinaOfertada PRIMARY KEY (ID),
+
+    CONSTRAINT CK_Ano Check (Ano BETWEEN '1900/01/01' AND '2100/12/31'), 
+    CONSTRAINT CK_Semestre CHECK ([Semestre] = '1' OR [Semestre] = '2'),
+    CONSTRAINT CK_Turma Check (Turma BETWEEN 'A' AND 'Z'),
+
+
+    CONSTRAINT FK_IdDisciplina_DisciplinaOfertada FOREIGN KEY (IdDisciplina)
+     REFERENCES Disciplina (ID),
+
+    CONSTRAINT FK_IdCoordenador_DisciplinaOfertada FOREIGN KEY (IdCoordenador)
+     REFERENCES Coordenador (ID),
+
+    CONSTRAINT FK_IdCurso_DisciplinaOfertada FOREIGN KEY (IdCurso)
+     REFERENCES Curso (ID),
+
+    CONSTRAINT FK_IdProfessor_DisciplinaOfertada FOREIGN KEY (IdProfessor)
+     REFERENCES PROFESSOR (ID),
+
+);
+
+CREATE TABLE SOLICITACAOMATRICULA
+    ( 
+        ID INT IDENTITY NOT NULL,
+        IdAluno INT NOT NULL,
+        IdDisciplinaOfertada INT NOT NULL,
+        DtSolicitacao DATETIME DEFAULT '01/01/1900',
+		IdCoordenador INT,
+		Status VARCHAR(7) not null DEFAULT ('Solicitada'),
+		
+
+    CONSTRAINT PK_ID_SOLICITACAOMATRICULA PRIMARY KEY (ID),
+    CONSTRAINT FK_idAluno_solicitacaomat FOREIGN KEY (IdAluno)
+	REFERENCES USUARIO(ID),
+    CONSTRAINT FK_IdDisciplinaOfertada_solicitacaomat FOREIGN KEY (IdDisciplinaOfertada)
+	REFERENCES DISCIPLINAOFERTADA(ID),
+    CONSTRAINT FK_iIdCoordenador_solicitacaomat FOREIGN KEY (IdCoordenador)
+	REFERENCES COORDENADOR(ID),
+
+    CONSTRAINT CK_status_SOLICITACAOMATRICULA CHECK(Status IN ('Solicitada','Aprovada','Rejeitada','Cancelada')),
+
+     );
+
+
+CREATE TABLE Atividade
+	(
+	ID INT IDENTITY NOT NULL,
+	Titulo VARCHAR(30) UNIQUE NOT NULL,
+	Descricao VARCHAR(30),
+	Conteudo VARCHAR (254) NOT NULL,
+	Tipo VARCHAR(30) NOT NULL, 
+	CONSTRAINT CK_Tipo
+		CHECK(Tipo IN ('Resposta Aberta','Teste')),
+	Extras VARCHAR(50),
+	IdProfessor INT NOT NULL,
+
+	CONSTRAINT PK_ID_Atividade PRIMARY KEY (ID),
+	CONSTRAINT FK_idProfessor FOREIGN KEY (IdProfessor)
+	 REFERENCES PROFESSOR(ID),
+	);
+
+CREATE TABLE AtividadeVinculada
+	(
+	ID INT IDENTITY NOT NULL,
+	IdAtividade INT UNIQUE NOT NULL,
+	IdProfessor INT NOT NULL,
+	IdDisciplinaOfertada INT UNIQUE NOT NULL,
+	Rotulo VARCHAR(20) UNIQUE NOT NULL,
+	Status VARCHAR(15) NOT NULL,
+	DtInicioRespostas DATE NOT NULL,
+	DtFimRespostas DATE NOT NULL,
+
+	CONSTRAINT PK_ID_AtividadeVinculada PRIMARY KEY (ID),
+	CONSTRAINT FK_IdAtividade FOREIGN KEY (IdAtividade)
+	 REFERENCES Atividade(ID),
+	CONSTRAINT FK_IdProfessor_AtividadeVinculada FOREIGN KEY (IdProfessor)
+	 REFERENCES PROFESSOR(ID),
+	 -- Pendente Tabela DisciplinaOfertada
+	CONSTRAINT FK_IdDisciplinaOfertada FOREIGN KEY (IdDisciplinaOfertada)
+	 REFERENCES DisciplinaOfertada(ID),
+	);
+
+CREATE TABLE ENTREGA(
+    ID INT IDENTITY,
+    IDALUNO INT NOT NULL,
+    IDATIVIDADEVINCULADA INT NOT NULL,
+    TITULO VARCHAR(20) NOT NULL,
+    RESPOSTA VARCHAR(500) NOT NULL, --ACEITA UM TEXTO CONTENDO LINK
+    DTENTREGA DATETIME NOT NULL,
+    STATUS VARCHAR(10) DEFAULT ('ENTREGUE') NOT NULL,
+
+    CONSTRAINT PK_ID_ENTREGA PRIMARY KEY(ID),
+    CONSTRAINT CK_STATUS_ENTREGA CHECK(STATUS IN('ENTREGUE','CORRIGIDO')),
+    CONSTRAINT FK_IDALUNO_ENTREGA FOREIGN KEY(IDALUNO) REFERENCES ALUNO(ID),
+    CONSTRAINT FK_ID_ATIV FOREIGN KEY(IDATIVIDADEVINCULADA) REFERENCES ATIVIDADEVINCULADA(ID),
+    );
+	ALTER TABLE ENTREGA ADD
+	CONSTRAINT DF_DTENTREGA DEFAULT(GETDATE()) FOR DTENTREGA
+
+CREATE TABLE MENSAGEM(
+    ID INT IDENTITY,
+    IDALUNO INT NOT NULL,
+    IDPROFESSOR INT NOT NULL,
+    ASSUNTO VARCHAR(30),
+    REFERENCIA VARCHAR(50)NOT NULL,
+    CONTEUDO VARCHAR(100),
+    STATUS VARCHAR(10) DEFAULT('ENVIADO') NOT NULL,
+    DTENVIO DATETIME DEFAULT(GETDATE()) NOT NULL,
+
+    CONSTRAINT PK_ID_MSG PRIMARY KEY(ID),
+    CONSTRAINT CK_STATUS_MENSAGEM CHECK(STATUS IN('ENVIADO','LIDO', 'RESPONDIDO')),
+    CONSTRAINT FK_IDALUNO_MSG FOREIGN KEY(IDALUNO) REFERENCES ALUNO(ID),
+    CONSTRAINT FK_IDPROFESSOR_MENSAGEM FOREIGN KEY(IDPROFESSOR) REFERENCES PROFESSOR(ID),
+
+    );
