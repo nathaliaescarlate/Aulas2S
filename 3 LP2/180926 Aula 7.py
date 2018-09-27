@@ -30,10 +30,10 @@ def divide(a,b):
         return c
     except ValueError:
         print("erro de valor")
-    except Exception:
-        print("A nota caiiu")
     except ZeroDivisionError:
         print("Não é possível dividir por Zero")
+    except Exception:
+        print("A nota caiiu")
     finally:
        print('olha, passei por aqui')
        
