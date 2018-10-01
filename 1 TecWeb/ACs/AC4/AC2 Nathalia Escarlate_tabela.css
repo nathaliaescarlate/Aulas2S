@@ -1,0 +1,58 @@
+table, td,th{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    
+    text-align: center;
+    padding: 10px;
+
+    font-family: 'Karla', sans-serif;
+
+    height: 35px;
+}
+
+/*
+td{
+    background-color: azure;
+}
+*/
+caption{
+    font-family: 'Indie Flower', cursive;
+}
+
+.Esconder{
+    border-top-style: hidden!important;
+    border-left-style: hidden!important;
+ 
+}
+
+.ACs{
+    background-color: lime;
+    width: 130px;
+}
+
+.Media{
+    background-color: forestgreen;
+    width: 130px;
+}
+
+.Prova{
+    background-color: yellow;
+    width: 130px;
+}
+
+.Sub{
+    background-color: orange;
+    width: 130px;
+}
+
+.MediaFinal{
+    background-color:aqua;
+    width: 130px;
+}
+
+.Disciplinas{
+    background-color: azure;
+    width: 130px;    
+}
+
+
