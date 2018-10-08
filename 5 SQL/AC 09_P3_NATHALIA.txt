@@ -1,0 +1,45 @@
+USE PEDIDOS
+--Liste os vendedores com o nome LEIA;
+SELECT * FROM TB_VENDEDOR WHERE NOME = 'LEIA'
+
+--Liste todos os clientes que tenham NOME começando com BRINDES;
+SELECT * FROM TB_CLIENTE WHERE NOME LIKE 'BRINDES%';
+
+--Liste todos os clientes que tenham NOME terminando com BRINDES;
+SELECT * FROM TB_CLIENTE WHERE NOME LIKE '%BRINDES';
+
+--Liste todos os clientes que tenham NOME contendo BRINDES;
+SELECT * FROM TB_CLIENTE WHERE NOME LIKE '%BRINDES%';
+
+--Liste todos os produtos com DESCRICAO começando por CANETA;
+SELECT * FROM TB_PRODUTO WHERE DESCRICAO LIKE '%CANETA';
+
+--Liste todos os produtos com DESCRICAO contendo SPECIAL;
+SELECT * FROM TB_PRODUTO WHERE DESCRICAO LIKE '%SPECIAL%';
+
+--Liste todos os produtos com DESCRICAO terminando por GOLD;
+SELECT * FROM TB_PRODUTO WHERE DESCRICAO LIKE '%GOLD';
+
+--Liste todos os clientes que tenham a letra A como segundo caractere do nome;
+SELECT * FROM TB_CLIENTE WHERE NOME LIKE '_%A'
+
+--Liste todos os produtos que tenham 0 (ZERO) como segundo caractere do campo  COD_PRODUTO;
+SELECT * FROM TB_PRODUTO WHERE COD_PRODUTO LIKE '_%0'
+
+--Liste todos os produtos que tenham a letra A como terceiro caractere do campo  COD_PRODUTO.
+SELECT * FROM TB_PRODUTO WHERE COD_PRODUTO LIKE '__%A'
+
+--Liste todos os pedidos com data de emissão anterior a Jan/2016;
+SELECT * FROM TB_PEDIDO WHERE DATA_EMISSAO < '2016-01-01'
+
+--Liste todos os pedidos com data de emissão no primeiro semestre de 2016;
+SELECT * FROM TB_PEDIDO WHERE DATA_EMISSAO BETWEEN '2016-01-01' AND '2016-06-30'
+
+--Liste todos os pedidos com data de emissão em janeiro e junho de 2016;
+SELECT * FROM TB_PEDIDO WHERE DATA_EMISSAO BETWEEN '2016-01-01' AND '2016-06-30'
+
+--Liste todos os pedidos do Vendedor Código 1 em Jan/2016;
+SELECT * FROM PEDIDOS WHERE CODVEN = 1 AND DATA_EMISSAO BETWEEN '2016-01-01' AND '2016-01-31'
+
+--Liste os códigos de clientes que efetuaram alguma compra (pedido) em Jan/2016, caso o  --cliente tenha comprado mais de uma vez aparecer cada código de cliente uma única vez.
+
