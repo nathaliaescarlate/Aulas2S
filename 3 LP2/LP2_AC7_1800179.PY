@@ -1,15 +1,9 @@
-'''def funcao_a(a,b):
-    c = a + b
-    return c
 
-def funcao_b(x,y):
-    z = funcao_a(x,y) + 10
-    return z
 
-e = int(input("valor: "))
-f= int(input("valor: "))
 
-print(funcao_b(e,f))'''
+
+
+
 
 class Pessoa:
     def __init__(self, n, e, c):
@@ -35,21 +29,21 @@ class Pessoa:
 
     def set_celular(self, celular):
         self.celular = celular
-# nome, email, celular, sigla, disciplinas, mensalidade
-# n   , e    , c      , s    , d          , m
 
-class Aluno(Pessoa): #colocou parenteses e Pessoa, que quer dizer que está herdando a classe Pessoa, dizendo que o que há na classe Pessoa, deve ter também na classe Aluno!
-    def __init__(self, n,e,c,s,m,r):
-        super().__init__(n,e,c) #chama as variaveis da superclasse.
+class Aluno(Pessoa): 
+    def __init__(self, n,e,c,s,m,r,d=[]):
+        
+        super().__init__(n,e,c) 
 
         self.sigla       = s    
         self.mensalidade = m
         self.ra          = r
+        self.disciplinas = d
 
     def __repr__(self):
-        #return 'Aluno: %s' % (self.nome)
         return 'Aluno: %s | Curso: %s' % (self.nome, self.sigla)
-    
+   
+
     def get_nome(self):
         return 'Aluno %s' % self.nome
 
@@ -63,6 +57,9 @@ class Aluno(Pessoa): #colocou parenteses e Pessoa, que quer dizer que está herd
     def get_ra(self):
         return self.ra
 
+    def get_disciplinas(self):
+        return self.disciplinas
+
     def set_sigla(self, sigla):
         self.sigla = sigla
 
@@ -72,14 +69,19 @@ class Aluno(Pessoa): #colocou parenteses e Pessoa, que quer dizer que está herd
     def set_ra(self, ra):
         self.ra = ra
 
+    def set_disciplinas(self,nova_d):
+        self.disciplinas.append(nova_d)         
+ 
+
 class Professor(Pessoa):
 
     def __init__(self, n,e,c,v):
 
         super().__init__(n,e,c) 
-
         self.valor_hora  = float(v)
-         #self.disciplinas = d
+
+    def __repr__(self):
+        return 'Prof: %s' % self.nome
 
     def get_nome(self):
         return 'Mestre %s' % self.nome
@@ -90,15 +92,23 @@ class Professor(Pessoa):
     def set_valor_hora(self,valor):
         self.valor_hora = float(valor)
 
-    def __repr__(self):
-    #return 'Nome: %s | Curso: %s' % (self.nome, self.sigla)
-        return 'Prof: %s' % self.nome
+aluno = Aluno("Jô",'jo@gmail.com',190,'ADS',690,1800179,['iot', 'matematica'])
 
-aluno = Aluno("Jô",'jo@gmail.com',190,'ADS',690,1800179)
+print(aluno.set_disciplinas('logica'))
+print(aluno.get_disciplinas())
+
+'''
+
+print(aluno.set_disciplinas(['logica']))
+print(aluno.set_disciplinas([['matematica']))
+print(aluno.set_disciplinas(['IoT']))
+
+
+aluno = Aluno("Jô",'jo@gmail.com',190,'ADS',690,1800179,'logica')
 print(aluno)
 
 prof = Professor('Ilana', 'ilana@gmail.com', 154,100)
 print(prof)
 
 print(aluno.get_nome())
-print(prof.get_nome())
+print(prof.get_nome())'''
