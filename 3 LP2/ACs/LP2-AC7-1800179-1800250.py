@@ -73,7 +73,7 @@ class Aluno(Pessoa):
         return 'R$ %.2f' % self.mensalidade
     def get_ra(self):
         return self.ra
-    def get_disciplinas(self):
+    def get_disciplinas(self):<--------- aqui
         # devolva as disciplinas (a lista delas)
 
     # "SETANDO" OS ATRIBUTOS (DANDO VALOR A ELES).
