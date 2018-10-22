@@ -13,9 +13,39 @@
 
 </head>
 <body>
-    <h1> Olá, mundo em html </h1>
-    <img src="static/universo.jpg" alt="Universo" width="20%" height="50%">
+    <h1> Olá, Mundo </h1>
+    <!--<img src="static/universo.jpg" alt="Universo" width="20%" height="50%">-->
     <p>{{paragrafo1}}</p>
     <p>{{paragrafo2}}</p>
+   <!-- <ul>
+        {% for item in alunos2%}
+            <li>{{ item }}- Posição: {{forloop.counter}}</li>
+            {% empty %}
+                <i>Lista vazia!</i>
+         {% endfor %}
+    </ul>-->
+
+<ul>
+    {% for item in lista%}
+    <li>{{item}}</li>
+    {% if forloop.last %}
+        <li>Aqui termina a lista.</li>
+    {% endif %}
+
+    { % empty %}
+        <li>Lista vazia! </li>
+    {% endfor %}
+</ul>
+
+
+<!--   
+{% if condicao1 %}
+        Entrei no bloco if.
+    {% elif condicao2 %}
+        Entrei no bloco elif.
+    {% else %}
+        Entrei no bloco else.
+    {% endif %}
+-->
 </body>
 </html>

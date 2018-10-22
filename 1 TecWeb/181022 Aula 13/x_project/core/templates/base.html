@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>{{title}}</title
+            {% load static %}
+        <link rel="stylesheet" type="text/css" href="static">
+        <link rel="stylesheet" href="% static 'estilo.css' %">
+    </head>
+    <body>
+        <header>
+            Cabeçalho igual
+        </header>
+
+        <main>
+            {%block container %}
+                Meu site
+            {% endblock %}            
+        </main>
+
+        <h1>Index!</h1>
+        <p>{{paragrafo1}}</p>
+        <p>{{paragrafo2}}</p>
+        <ul>
+            {% for item in alunos%}
+            <li>{{item}} - Posição: {{forloop.counter}}</li>
+            {%endfor%}
+        </ul>
+        <ul>
+            {% for item in alunos2 %}
+            <li>{{item}} - Posição: {{forloop.counter}}</li>
+                {%empty%}
+            <li>Lista Vazia!</li>
+                {%endfor%}
+        </ul>
+        <ul>
+            {% if condicao1 %}
+                Entrei no bloco if.
+            {% elif condicao2 %}
+                Entrei no bloco elif.
+            {% else %}
+                Entrei no bloco else.
+            {% endif %}
+        </ul>
+        <ul>
+        {% for item in lista %}
+        <li>{{item}}</li>
+        {% if forloop.last %}
+        <li>Aqui termina Lista.</li>
+        {%endif%}
+
+        {% empty %}
+        <li>Lista Vazia!</li>
+        {%endfor%}
+        </ul>
+ <footer>
+     igual
+ </footer>
+    </body>
+</html>

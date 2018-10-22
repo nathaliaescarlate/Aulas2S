@@ -10,6 +10,11 @@ def index(request):
         'title':'E-commerce FIT',
         'paragrafo1':'Primeiro parágrafo',
         'paragrafo2':'Segundo parágrafo',
+        'alunos':['Abelardo', 'Lucas', 'Keyne', 'Ruan', 'Erick', 'Pedro'],
+        'alunos2':[],
+        'condicao1': True,
+        'condicao2': False,
+        'lista':[1,2,3,4,5]
 
     }
     return render  (request,"index.html", context)   
