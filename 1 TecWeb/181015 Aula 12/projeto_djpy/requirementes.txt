@@ -19,7 +19,7 @@ MarkupSafe==1.0
 mccabe==0.6.1
 pluggy==0.6.0
 portend==2.2
-py==1.5.2
+py==1.10.0
 pylint==1.9.2
 pypiwin32==220
 pytest==3.3.0
