@@ -29,7 +29,7 @@ six==1.11.0
 SQLAlchemy==1.2.9
 tempora==1.9
 UNKNOWN==0.0.0
-urllib3==1.23
+urllib3==1.26.5
 virtualenv==15.1.0
 Werkzeug==0.14.1
 wrapt==1.10.11
